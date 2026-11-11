@@ -124,6 +124,38 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Widget _googleButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 52,
+      child: OutlinedButton(
+        onPressed: _googleLogin,
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/google.png',
+              height: 24,
+              width: 24,
+              errorBuilder: (context, error, stack) =>
+                  const Icon(Icons.g_mobiledata, size: 28),
+            ),
+            const SizedBox(width: 12),
+            const Text(
+              'Continue with Google',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,12 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text('or', style: TextStyle(color: AppColors.textLight)),
                 ),
                 const SizedBox(height: 16),
-                AppButton(
-                  label: 'Continue with Google',
-                  icon: Icons.g_mobiledata,
-                  outlined: true,
-                  onPressed: _googleLogin,
-                ),
+                _googleButton(),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
