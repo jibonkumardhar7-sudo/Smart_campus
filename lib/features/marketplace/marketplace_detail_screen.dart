@@ -56,7 +56,7 @@ class _MarketplaceDetailScreenState extends State<MarketplaceDetailScreen> {
     }
   }
 
-  // Report an inappropriate listing: it is saved as a complaint for the admins.
+  
   Future<void> _report() async {
     final ok = await confirmDialog(context, 'Report listing', 'Report this listing as inappropriate?');
     if (!ok) return;
@@ -91,7 +91,7 @@ class _MarketplaceDetailScreenState extends State<MarketplaceDetailScreen> {
                 await _reload();
               },
             ),
-          // Owner can delete; admin can delete inappropriate listings
+          
           if (_isOwner || AppState.isAdmin) IconButton(icon: const Icon(Icons.delete), onPressed: _delete),
           if (!_isOwner) IconButton(icon: const Icon(Icons.flag_outlined), onPressed: _report),
         ],

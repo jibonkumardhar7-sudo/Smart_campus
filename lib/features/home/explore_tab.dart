@@ -9,7 +9,7 @@ import '../marketplace/marketplace_detail_screen.dart';
 import '../notices/notice_detail_screen.dart';
 import '../study_resources/resource_detail_screen.dart';
 
-/// Search across all campus content.
+
 class ExploreTab extends StatefulWidget {
   const ExploreTab({super.key});
 

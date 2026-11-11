@@ -27,7 +27,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
     _loadRegistration();
   }
 
-  // Checks if I am registered and counts all registrations
+  
   Future<void> _loadRegistration() async {
     try {
       final all = await supabase.from('event_registrations').select('id').eq('event_id', _event['id']);

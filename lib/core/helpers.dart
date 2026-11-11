@@ -7,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'app_config.dart';
 
-/// Keeps the logged-in user's profile (name, role...) in memory.
 class AppState {
   static Map<String, dynamic>? profile;
 
@@ -88,8 +87,6 @@ Future<File?> pickImage() async {
   return File(picked.path);
 }
 
-/// Uploads a file to Supabase Storage and returns its public URL.
-/// Files are saved inside a folder named with the user's id (needed by the storage policy).
 Future<String> uploadFile(File file, String folder) async {
   final name = file.path.split('/').last.replaceAll(' ', '_');
   final path = '${AppState.uid}/$folder/${DateTime.now().millisecondsSinceEpoch}_$name';
@@ -104,7 +101,6 @@ Future<void> openLink(BuildContext context, String url) async {
 
 Future<void> callNumber(BuildContext context, String phone) => openLink(context, 'tel:$phone');
 
-/// Opens a new screen. When we come back, [onBack] runs (used to refresh lists).
 void openPage(BuildContext context, Widget page, {VoidCallback? onBack}) {
   Navigator.push(context, MaterialPageRoute(builder: (_) => page)).then((_) {
     if (onBack != null) onBack();

@@ -68,7 +68,7 @@ class _NoticesScreenState extends State<NoticesScreen> {
       appBar: AppBar(
         title: const Text('Notice Board'),
         actions: [
-          // Only admins see the Add button (the database also blocks students)
+          
           if (AppState.isAdmin)
             TextButton.icon(
               onPressed: () => openPage(context, const NoticeFormScreen(), onBack: _load),

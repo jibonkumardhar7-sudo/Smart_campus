@@ -5,7 +5,7 @@ import '../profile/profile_tab.dart';
 import 'dashboard_tab.dart';
 import 'explore_tab.dart';
 
-/// Main screen with the bottom navigation bar.
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

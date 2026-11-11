@@ -61,7 +61,7 @@ class _LostFoundDetailScreenState extends State<LostFoundDetailScreen> {
               onPressed: () async {
                 await Navigator.push(
                     context, MaterialPageRoute(builder: (_) => LostFoundFormScreen(item: _item)));
-                // reload the latest data after editing
+                
                 final fresh = await supabase.from('lost_found_items').select().eq('id', _item['id']).maybeSingle();
                 if (fresh != null && mounted) setState(() => _item = fresh);
               },

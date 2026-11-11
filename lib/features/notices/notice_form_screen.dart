@@ -5,7 +5,7 @@ import '../../core/helpers.dart';
 import '../../core/validators.dart';
 import '../../core/widgets.dart';
 
-/// Admin only: create or edit a notice.
+
 class NoticeFormScreen extends StatefulWidget {
   final Map<String, dynamic>? notice;
   const NoticeFormScreen({super.key, this.notice});

@@ -32,7 +32,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       _error = null;
     });
     try {
-      // "profiles(...)" also gets the seller's information
+      
       final data = await supabase
           .from('marketplace_items')
           .select('*, profiles(full_name, phone, email)')

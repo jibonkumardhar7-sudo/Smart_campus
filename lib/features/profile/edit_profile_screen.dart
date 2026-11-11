@@ -10,8 +10,7 @@ import '../../core/widgets.dart';
 import '../auth/login_screen.dart';
 import '../home/home_screen.dart';
 
-/// Edit Profile। forceComplete = true হলে Google login-এর পর
-/// প্রথমবার তথ্য পূরণ করার জন্য দেখানো হয়।
+
 class EditProfileScreen extends StatefulWidget {
   final bool forceComplete;
   const EditProfileScreen({super.key, this.forceComplete = false});
@@ -34,7 +33,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.initState();
     final p = AppState.profile ?? {};
     _name.text = p['full_name'] ?? '';
-    // Google user-এর Student ID আসলে এলোমেলো কোড, তাই ঘর খালি রাখি
+    
     final sid = (p['student_id'] ?? '').toString();
     _studentId.text = sid == p['id'] ? '' : sid;
     _phone.text = p['phone'] ?? '';
@@ -49,7 +48,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       String? avatarUrl = AppState.profile?['avatar_url'];
       if (_image != null) avatarUrl = await uploadFile(_image!, 'avatars');
 
-      // "role" পাঠানো হয় না। database-ও এটা বদলাতে দেয় না।
+      
       await supabase.from('profiles').update({
         'full_name': _name.text.trim(),
         'student_id': _studentId.text.trim(),
@@ -71,7 +70,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       }
       return;
     } on PostgrestException catch (e) {
-      // 23505 = এই Student ID আগে থেকেই আছে
+      
       final msg = e.code == '23505'
           ? 'This Student ID is already used by another account.'
           : 'Could not save profile.';

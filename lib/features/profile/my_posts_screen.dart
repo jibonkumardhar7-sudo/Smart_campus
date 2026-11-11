@@ -8,8 +8,6 @@ import '../lost_found/lost_found_detail_screen.dart';
 import '../marketplace/marketplace_detail_screen.dart';
 import '../study_resources/resource_detail_screen.dart';
 
-/// Shows everything the student created: lost & found posts, marketplace listings,
-/// uploaded resources and registered events.
 class MyPostsScreen extends StatelessWidget {
   const MyPostsScreen({super.key});
 
@@ -55,7 +53,7 @@ class MyPostsScreen extends StatelessWidget {
               subtitle: (m) => '${m['department']}-${m['semester']} Sem • ${m['category']}',
               page: (m) => ResourceDetailScreen(resource: m),
             ),
-            // Registered events: we read event_registrations and show the joined event
+
             _MyList(
               table: 'event_registrations',
               select: '*, events(*)',
