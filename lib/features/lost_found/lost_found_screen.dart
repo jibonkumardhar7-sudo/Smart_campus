@@ -42,7 +42,6 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
     if (mounted) setState(() => _loading = false);
   }
 
-  // Filter by Lost/Found, category and search text
   List<Map<String, dynamic>> get _filtered {
     return _items.where((item) {
       if (item['type'] != _type) return false;
