@@ -206,6 +206,27 @@ class _TrackTabState extends State<_TrackTab> {
     }
   }
 
+  Future<void> _delete(Map<String, dynamic> c) async {
+    final ok = await confirmDialog(
+      context,
+      'Delete ${c['type']}',
+      'Do you really want to delete this ${c['type']}?',
+    );
+    if (!ok) return;
+    try {
+      final deleted = await supabase.from('complaints').delete().eq('id', c['id']).select();
+      if (!mounted) return;
+      if (deleted.isEmpty) {
+        showMessage(context, 'Could not delete. Only admins can delete.', isError: true);
+        return;
+      }
+      showMessage(context, 'Deleted successfully');
+      _load();
+    } catch (e) {
+      if (mounted) showMessage(context, 'Could not delete. Try again.', isError: true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) return const LoadingView();
@@ -236,6 +257,12 @@ class _TrackTabState extends State<_TrackTab> {
                             style: const TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       StatusBadge(text: c['status'], color: statusColor(c['status'])),
+                      if (AppState.isAdmin)
+                        IconButton(
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.delete_outline, color: Colors.red),
+                          onPressed: () => _delete(c),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 8),
